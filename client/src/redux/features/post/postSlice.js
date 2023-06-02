@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, isPending } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../utils/axios'
 
 const initialState = {
@@ -99,7 +99,14 @@ export const postSlice = createSlice({
                 state.loading = true
             })
             .addCase(updatePost.fulfilled, (state, action) => {
-
+                state.loading = false
+                const index = state.posts.findIndex(
+                    (post) => post._id === action.payload._id,
+                )
+                state.posts[index] = action.payload
+            })
+            .addCase(updatePost.rejected, (state) => {
+                state.loading = false
             })
     }
 })
