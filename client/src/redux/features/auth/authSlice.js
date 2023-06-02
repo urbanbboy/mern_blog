@@ -64,52 +64,53 @@ export const authSlice = createSlice({
             state.status = null
         },
     },
-    extraReducers: {
-        // Register user
-        [registerUser.pending]: (state) => {
-            state.isLoading = true
-            state.status = null
-        },
-        [registerUser.fulfilled]: (state, action) => {
-            state.isLoading = false
-            state.status = action.payload.message
-            state.user = action.payload.user
-            state.token = action.payload.token
-        },
-        [registerUser.rejectWithValue]: (state, action) => {
-            state.status = action.payload.message
-            state.isLoading = false
-        },
-        // Login user
-        [loginUser.pending]: (state) => {
-            state.isLoading = true
-            state.status = null
-        },
-        [loginUser.fulfilled]: (state, action) => {
-            state.isLoading = false
-            state.status = action.payload.message
-            state.user = action.payload.user
-            state.token = action.payload.token
-        },
-        [loginUser.rejectWithValue]: (state, action) => {
-            state.status = action.payload.message
-            state.isLoading = false
-        },
-        // Проверка авторизации
-        [getMe.pending]: (state) => {
-            state.isLoading = true
-            state.status = null
-        },
-        [getMe.fulfilled]: (state, action) => {
-            state.isLoading = false
-            state.status = null
-            state.user = action.payload?.user
-            state.token = action.payload?.token
-        },
-        [getMe.rejectWithValue]: (state, action) => {
-            state.status = action.payload.message
-            state.isLoading = false
-        },
+    extraReducers: (builder) => {
+        builder
+            //register user
+            .addCase(registerUser.pending, (state) => {
+                state.isLoading = true
+                state.status = null
+            })
+            .addCase(registerUser.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.status = action.payload.message
+                state.user = action.payload.user
+                state.token = action.payload.token
+            })
+            .addCase(registerUser.rejected, (state, action) => {
+                state.status = action.payload.message
+                state.isLoading = false
+            })
+            // Login user
+            .addCase(loginUser.pending, (state) => {
+                state.isLoading = true
+                state.status = null
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.status = action.payload.message
+                state.user = action.payload.user
+                state.token = action.payload.token
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.status = action.payload.message
+                state.isLoading = false
+            })
+            //auth check
+            .addCase(getMe.pending, (state) => {
+                state.isLoading = true
+                state.status = null
+            })
+            .addCase(getMe.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.status = null
+                state.user = action.payload?.user
+                state.token = action.payload?.token
+            })
+            .addCase(getMe.rejected, (state, action) => {
+                state.status = action.payload.message
+                state.isLoading = false
+            })
     },
 })
 
