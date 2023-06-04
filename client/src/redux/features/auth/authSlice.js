@@ -44,7 +44,9 @@ export const loginUser = createAsyncThunk(
     },
 )
 
-export const getMe = createAsyncThunk('auth/loginUser', async () => {
+export const getMe = createAsyncThunk(
+    'auth/getMe', 
+    async () => {
     try {
         const { data } = await axios.get('/auth/me')
         return data
@@ -78,8 +80,8 @@ export const authSlice = createSlice({
                 state.token = action.payload.token
             })
             .addCase(registerUser.rejected, (state, action) => {
-                state.status = action.payload.message
                 state.isLoading = false
+                state.status = action.payload.message
             })
             // Login user
             .addCase(loginUser.pending, (state) => {
