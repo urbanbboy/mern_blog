@@ -39,7 +39,9 @@ export const register = async (req, res) => {
         )
 
         res.json({
-            newUser, message: 'Регистрация прошла успешно.'
+            newUser, 
+            token,
+            message: 'Регистрация прошла успешно.'
         })
 
         await newUser.save()
