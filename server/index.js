@@ -12,7 +12,7 @@ const app = express()
 dotenv.config()
 
 //constants
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT
 const DB_USER = process.env.DB_USER
 const DB_PASSWORD = process.env.DB_PASSWORD
 const DB_NAME = process.env.DB_NAME
