@@ -1,4 +1,4 @@
-https://github.com/urbanbboy/youtube_clone/assets/102015315/e7719159-1398-4dd8-93dc-21c87d5b5230
+![ezgif com-video-to-gif](https://github.com/urbanbboy/mern_blog/assets/102015315/2a0674db-909f-4a64-acdb-d9b0646c429d)
 
 # Features:
 
