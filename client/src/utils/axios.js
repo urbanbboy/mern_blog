@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3005/api',
+    baseURL: 'https://mern-app-7eoi.onrender.com/api',
 })
 
 instance.interceptors.request.use((config) => {
