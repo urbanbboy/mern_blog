@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser, checkIsAuth } from '../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
+import { Loader } from '../components/Loader/Loader'
 
 export const RegisterPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const { status } = useSelector((state) => state.auth)
     const isAuth = useSelector(checkIsAuth)
 
@@ -17,9 +19,10 @@ export const RegisterPage = () => {
         if (status) toast(status)
         if (isAuth) navigate('/')
     }, [status, isAuth, navigate])
-    
+
     const handleSubmit = () => {
         try {
+            setIsLoading(true)
             dispatch(registerUser({ username, password }))
             setPassword('')
             setUsername('')
@@ -27,6 +30,8 @@ export const RegisterPage = () => {
             console.log(error)
         }
     }
+
+    if(isLoading) return <Loader />
 
     return (
         <form

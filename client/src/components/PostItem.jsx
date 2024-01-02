@@ -2,15 +2,10 @@ import React from 'react'
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import { Loader } from './Loader/Loader'
 
 export const PostItem = ({ post }) => {
-    if (!post) {
-        return (
-            <div className='text-xl text-center text-white py-10'>
-                Загрузка...
-            </div>
-        )
-    }
+    if (!post) return <Loader />
     return (
         <Link to={`/${post._id}`}>
             <div className='flex flex-col basis-1/4 flex-grow'>

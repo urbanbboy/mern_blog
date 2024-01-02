@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { PopularPosts } from '../components/PopularPosts'
 import { PostItem } from '../components/PostItem'
 import { getAllPosts } from '../redux/features/post/postSlice'
+import { Loader } from '../components/Loader/Loader'
 
 export const MainPage = () => {
     const dispatch = useDispatch()
@@ -13,13 +14,7 @@ export const MainPage = () => {
         dispatch(getAllPosts())
     }, [dispatch])
 
-    if (!posts.length) {
-        return (
-            <div className='text-xl text-center text-white py-10'>
-                Постов не существует.
-            </div>
-        )
-    }
+    if (!posts.length) return <Loader />
 
     return (
         <div className='max-w-[900px] mx-auto py-10'>
